@@ -4,8 +4,8 @@ import javax.swing.JFrame;
 
 public class RunnerClass {
 
-	final int bkgdheight = 700;
-	final int bkgdwidth = 700;
+	final static int bkgdheight = 700;
+	final static int bkgdwidth = 700;
 	JFrame bkgd = new JFrame();
 	
 	public static void main(String[] args) {
@@ -13,6 +13,8 @@ public class RunnerClass {
 	}
 	
 	public RunnerClass() {
+		
+		
 		GamePanel gamePanel = null;
 		try {
 			gamePanel = new GamePanel();
@@ -21,7 +23,8 @@ public class RunnerClass {
 			e.printStackTrace();
 		}
 		bkgd.add(gamePanel);
-		bkgd.setSize(bkgdheight, bkgdwidth);
+		bkgd.setDefaultCloseOperation(3);
+		bkgd.setSize(bkgdwidth, bkgdheight);
 		bkgd.setVisible(true);
 	}
 	
