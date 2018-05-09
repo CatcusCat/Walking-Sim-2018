@@ -2,13 +2,12 @@ import java.awt.Graphics;
 
 public class RareCatto extends ObjectManager{
 	
-
-	int catX;
-	int catY;
+	static int catX = 300;
+	static int catY = 550;
 
 	public RareCatto(int catX, int catY) {
-		this.catX = catX;
-		this.catY = catY;
+		RareCatto.catX = catX;
+		RareCatto.catY = catY;
 	}
 	
 	public void update() {
@@ -16,6 +15,7 @@ public class RareCatto extends ObjectManager{
 	}
 	
 	public void draw(Graphics g) {
-		g.drawImage(GamePanel.rCat, 0, 0, 64, 64, null);
+
 	}
+	
 }

@@ -24,10 +24,11 @@ public class GamePanel extends JPanel {
 	public GamePanel() throws IOException {
 		bkgdf1 = ImageIO.read(this.getClass().getResourceAsStream("pixil-frame-0.png"));
 		rCat = ImageIO.read(this.getClass().getResourceAsStream("CattoSprite (2).png"));
-		c = new RareCatto(10, 10);
+		c = new RareCatto(RareCatto.catX, RareCatto.catY);
 		new Dimension(700, 700);
 		System.out.println(getWidth() + " " + getHeight());
 	}
+	
 	@Override
 	public void paintComponent(Graphics g) {
 		drawGameState(g);
@@ -36,6 +37,8 @@ public class GamePanel extends JPanel {
 	
 	public void drawGameState(Graphics g) {
 		g.drawImage(bkgdf1, 0, 0, RunnerClass.bkgdwidth, RunnerClass.bkgdheight, null);
+		g.drawImage(GamePanel.rCat, RareCatto.catX, RareCatto.catY, 64, 64, null);
 		repaint();
 	}
+	
 }
