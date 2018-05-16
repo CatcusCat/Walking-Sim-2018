@@ -2,19 +2,23 @@ import java.awt.Graphics;
 
 public class RareCatto extends ObjectManager{
 	
-	static int catX = 300;
-	static int catY = 550;
+	int catX = 300;
+	int catY = 550;
 
-	public RareCatto(int catX, int catY) {
-		RareCatto.catX = catX;
-		RareCatto.catY = catY;
+	public RareCatto() {
+		
 	}
 	
 	public void update() {
 		
 	}
 	
+	void paintComponent(Graphics g) {
+		
+	}
+	
 	public void draw(Graphics g) {
+		g.drawImage(GamePanel.rCat, catX, catY, 64, 64, null);
 
 	}
 	

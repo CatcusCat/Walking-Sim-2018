@@ -8,7 +8,6 @@ public class RunnerClass implements KeyListener {
 
 	final static int bkgdheight = 700;
 	final static int bkgdwidth = 700;
-	boolean left = false;
 	JFrame bkgd = new JFrame();
 	
 	public static void main(String[] args) {
@@ -26,10 +25,12 @@ public class RunnerClass implements KeyListener {
 			e.printStackTrace();
 		}
 		bkgd.add(gamePanel);
-		bkgd.addKeyListener(this);
+		bkgd.addKeyListener(gamePanel);
 		bkgd.setDefaultCloseOperation(3);
 		bkgd.setSize(bkgdwidth, bkgdheight);
 		bkgd.setVisible(true);
+		
+		
 	}
 
 	@Override
@@ -42,13 +43,6 @@ public class RunnerClass implements KeyListener {
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
 		
-		if (e.getKeyChar() == KeyEvent.VK_A) {
-			left = true;
-		}
-		
-		if (left == true) {
-			RareCatto.catX -= 8;
-		}
 		
 	}
 
