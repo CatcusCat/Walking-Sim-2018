@@ -4,7 +4,7 @@ import java.io.IOException;
 
 import javax.swing.JFrame;
 
-public class RunnerClass implements KeyListener {
+public class RunnerClass {
 
 	final static int bkgdheight = 700;
 	final static int bkgdwidth = 700;
@@ -32,27 +32,4 @@ public class RunnerClass implements KeyListener {
 		
 		
 	}
-
-	@Override
-	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void keyPressed(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
-		
-	}
-
-	@Override
-	public void keyReleased(KeyEvent e) {
-		
-		
-		
-	}
-	
-	
-	
 }
