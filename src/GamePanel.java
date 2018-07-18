@@ -106,8 +106,8 @@ public class GamePanel extends JPanel implements KeyListener {
 				c.catY = panelHeight;
 			}
 			
-			if (imageRow == 0 && c.catY <= 575) {
-				c.catY = 575;
+			if (imageRow == 0 && c.catY <= 25) {
+				c.catY = 25;
 			}
 		}
 			
