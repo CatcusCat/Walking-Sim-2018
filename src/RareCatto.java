@@ -1,6 +1,6 @@
 import java.awt.Graphics;
 
-public class RareCatto extends ObjectManager{
+public class RareCatto {
 	
 	int catX = 300;
 	int catY = 550;
