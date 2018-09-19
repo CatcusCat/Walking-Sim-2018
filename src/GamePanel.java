@@ -20,7 +20,7 @@ public class GamePanel extends JPanel implements KeyListener {
 	String ownBoatS;
 	public static BufferedImage rCat;
 	public static BufferedImage raft;
-	public static BufferedImage[][] bkgdArray = new BufferedImage[4][2];
+	public static BufferedImage[][] bkgdArray = new BufferedImage[4][3];
 	RareCatto c;
 	Boat Raft;
 	JTextArea inv = new JTextArea();
@@ -34,8 +34,9 @@ public class GamePanel extends JPanel implements KeyListener {
 		bkgdArray[1][0] = ImageIO.read(this.getClass().getResourceAsStream("frame3.png"));
 		bkgdArray[2][0] = ImageIO.read(this.getClass().getResourceAsStream("pixil-frame-1.png"));
 		bkgdArray[3][0] = ImageIO.read(this.getClass().getResourceAsStream("pixil-frame-0.png"));
-		bkgdArray[0][1] = ImageIO.read(this.getClass().getResourceAsStream("topcenter.png"));
-		bkgdArray[1][1] = ImageIO.read(this.getClass().getResourceAsStream("watertemple.png"));
+		bkgdArray[0][1] = ImageIO.read(this.getClass().getResourceAsStream("for1.png"));
+		bkgdArray[1][1] = ImageIO.read(this.getClass().getResourceAsStream("newmaze copy.png"));
+		bkgdArray[2][1] = ImageIO.read(this.getClass().getResourceAsStream("rmid.png"));
 		rCat = ImageIO.read(this.getClass().getResourceAsStream("jkrealboi.png"));
 		raft = ImageIO.read(this.getClass().getResourceAsStream("boat.png"));
 		c = new RareCatto();
