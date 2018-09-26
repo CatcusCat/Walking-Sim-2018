@@ -1,6 +1,8 @@
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
@@ -10,26 +12,31 @@ import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
+import javax.swing.Timer;
 import javax.swing.text.JTextComponent;
 
-public class GamePanel extends JPanel implements KeyListener {
-	public int imageRow = 3, imageColumn = 0;
-	final int speedyBoi = 25;
+public class GamePanel extends JPanel implements KeyListener, ActionListener {
+	public int imageRow = 1, imageColumn = 1;
+	final int speedyBoi = 1;
 	int panelWidth = 700, panelHeight = 650;
-	boolean ownBoat = true;
+	boolean ownBoat = false;
+	boolean left = false, right = false, up = false, down = false;
 	String ownBoatS;
+	static final int FPS = 240;
+
 	public static BufferedImage rCat;
 	public static BufferedImage raft;
 	public static BufferedImage[][] bkgdArray = new BufferedImage[4][3];
 	RareCatto c;
 	Boat Raft;
 	JTextArea inv = new JTextArea();
-	
 
 	// code for background
 
 	public GamePanel() throws IOException {
-		
+
+		Timer t = new Timer(1000 / FPS, this);
+
 		bkgdArray[0][0] = ImageIO.read(this.getClass().getResourceAsStream("topframeww.png"));
 		bkgdArray[1][0] = ImageIO.read(this.getClass().getResourceAsStream("frame3.png"));
 		bkgdArray[2][0] = ImageIO.read(this.getClass().getResourceAsStream("pixil-frame-1.png"));
@@ -42,17 +49,29 @@ public class GamePanel extends JPanel implements KeyListener {
 		c = new RareCatto();
 		Raft = new Boat();
 		new Dimension(700, 700);
-		if (ownBoat = true) {
-			ownBoatS = "Raft";
+
+		t.start();
+
+		if (imageRow == 1 && imageColumn == 1) {
+			if (c.catX == Raft.boatX && c.catY == Raft.boatY) {
+				ownBoat = true;
+			}
+			if (ownBoat == true) {
+				ownBoatS = "Raft";
+				System.out.println(c.catX);
+				System.out.println(c.catY);
+				System.out.println(Raft.boatX);
+				System.out.println(Raft.boatY);
+				System.out.println(ownBoatS);
+			}
 		}
-		
 	}
 
 	@Override
 	public void paintComponent(Graphics g) {
 		g.drawImage(bkgdArray[imageRow][imageColumn], 0, 0, RunnerClass.bkgdwidth, RunnerClass.bkgdheight, null);
 		c.draw(g);
-		if (imageRow == 1 && imageColumn == 1) {
+		if (ownBoat == false) {
 			Raft.draw(g);
 		}
 		c.draw(g);
@@ -62,23 +81,77 @@ public class GamePanel extends JPanel implements KeyListener {
 	@Override
 	public void keyTyped(KeyEvent e) {
 		// TODO Auto-generated method stub
-		
-		
 
 	}
 
 	@Override
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method s
-		
-		
-		if(e.getKeyCode() ==  KeyEvent.VK_E) {
+
+		if (e.getKeyCode() == KeyEvent.VK_E) {
 			inv.setText(ownBoatS);
 			inv.setVisible(true);
 		}
 
 		if (e.getKeyCode() == KeyEvent.VK_A) {
 
+			left = true;
+
+		}
+
+		if (e.getKeyCode() == KeyEvent.VK_S) {
+
+			down = true;
+
+		}
+
+		else if (e.getKeyCode() == KeyEvent.VK_D) {
+
+			right = true;
+
+		}
+
+		if (e.getKeyCode() == KeyEvent.VK_W) {
+
+			up = true;
+		}
+
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		// TODO Auto-generated method stub
+		if (e.getKeyCode() == KeyEvent.VK_A) {
+
+			left = false;
+
+		}
+
+		if (e.getKeyCode() == KeyEvent.VK_S) {
+
+			down = false;
+
+		}
+
+		if (e.getKeyCode() == KeyEvent.VK_D) {
+
+			right = false;
+
+		}
+
+		if (e.getKeyCode() == KeyEvent.VK_W) {
+
+			up = false;
+
+		}
+
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		// timer tick
+		if (left == true) {
 			c.catX -= speedyBoi;
 
 			if (imageRow == 2 && imageColumn == 0 && c.catY > 350 && c.catY < 395) {
@@ -89,7 +162,7 @@ public class GamePanel extends JPanel implements KeyListener {
 				c.catX += speedyBoi;
 
 			}
-			
+
 			else if (imageColumn != 0 && c.catX < 0) {
 				imageColumn--;
 				c.catX = 675;
@@ -97,7 +170,22 @@ public class GamePanel extends JPanel implements KeyListener {
 
 		}
 
-		else if (e.getKeyCode() == KeyEvent.VK_S) {
+		if (up == true) {
+
+			c.catY -= speedyBoi;
+
+			if (c.catY < -10) {
+				imageRow--;
+				c.catY = panelHeight;
+			}
+
+			if (imageRow == 0 && c.catY <= 25) {
+				c.catY = 25;
+			}
+		}
+		
+		
+		if (down == true) {
 			c.catY += speedyBoi;
 
 			// if (imageRow == 2 && imageColumn == 0 && c.catX > 0 && c.catX < 25 && c.catY
@@ -113,37 +201,16 @@ public class GamePanel extends JPanel implements KeyListener {
 			else if (imageRow == 3 && c.catY >= 575) {
 				c.catY = 575;
 			}
-
 		}
 
-		else if (e.getKeyCode() == KeyEvent.VK_D) {
+		if (right == true)
+
 			c.catX += speedyBoi;
-			
-			if (imageColumn != 3 && c.catX >= 675) {
-				imageColumn++;
-				c.catX = -25;
-			}
+
+		if (imageColumn != 3 && c.catX >= 675) {
+			imageColumn++;
+			c.catX = -25;
 		}
-
-		else if (e.getKeyCode() == KeyEvent.VK_W) {
-			c.catY -= speedyBoi;
-
-			if (c.catY < -10) {
-				imageRow--;
-				c.catY = panelHeight;
-			}
-
-			if (imageRow == 0 && c.catY <= 25) {
-				c.catY = 25;
-			}
-		}
-
-	}
-
-	@Override
-	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
-
 	}
 
 }
