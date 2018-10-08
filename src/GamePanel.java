@@ -16,7 +16,7 @@ import javax.swing.Timer;
 import javax.swing.text.JTextComponent;
 
 public class GamePanel extends JPanel implements KeyListener, ActionListener {
-	public int imageRow = 1, imageColumn = 1;
+	public int imageRow = 0, imageColumn = 0;
 	final int speedyBoi = 1;
 	int panelWidth = 700, panelHeight = 650;
 	boolean ownBoat = false;
@@ -44,6 +44,7 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
 		bkgdArray[0][1] = ImageIO.read(this.getClass().getResourceAsStream("for1.png"));
 		bkgdArray[1][1] = ImageIO.read(this.getClass().getResourceAsStream("newmaze copy.png"));
 		bkgdArray[2][1] = ImageIO.read(this.getClass().getResourceAsStream("rmid.png"));
+		bkgdArray[3][1] = ImageIO.read(this.getClass().getResourceAsStream("bigfor.png"));
 		rCat = ImageIO.read(this.getClass().getResourceAsStream("jkrealboi.png"));
 		raft = ImageIO.read(this.getClass().getResourceAsStream("boat.png"));
 		c = new RareCatto();
@@ -51,29 +52,11 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
 		new Dimension(700, 700);
 
 		t.start();
-
-		if (imageRow == 1 && imageColumn == 1) {
-			if (c.catX == Raft.boatX && c.catY == Raft.boatY) {
-				ownBoat = true;
-			}
-			if (ownBoat == true) {
-				ownBoatS = "Raft";
-				System.out.println(c.catX);
-				System.out.println(c.catY);
-				System.out.println(Raft.boatX);
-				System.out.println(Raft.boatY);
-				System.out.println(ownBoatS);
-			}
-		}
 	}
 
 	@Override
 	public void paintComponent(Graphics g) {
 		g.drawImage(bkgdArray[imageRow][imageColumn], 0, 0, RunnerClass.bkgdwidth, RunnerClass.bkgdheight, null);
-		c.draw(g);
-		if (ownBoat == false) {
-			Raft.draw(g);
-		}
 		c.draw(g);
 		repaint();
 	}
@@ -94,7 +77,6 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
 		}
 
 		if (e.getKeyCode() == KeyEvent.VK_A) {
-
 			left = true;
 
 		}
@@ -152,23 +134,21 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
 		// TODO Auto-generated method stub
 		// timer tick
 		if (left == true) {
+
 			c.catX -= speedyBoi;
 
-			if (imageRow == 2 && imageColumn == 0 && c.catY > 350 && c.catY < 395) {
-				c.catX -= speedyBoi;
-			}
-
-			else if (imageColumn == 0 && c.catX < 25) {
-				c.catX += speedyBoi;
-
-			}
-
-			else if (imageColumn != 0 && c.catX < 0) {
+			if (c.catX < -10) {
 				imageColumn--;
-				c.catX = 675;
+				c.catX = 674;
 			}
-
+			
+			if (imageColumn == 0 && c.catX < 25) {
+				c.catX = 25;
+			}
 		}
+			
+			
+		
 
 		if (up == true) {
 
