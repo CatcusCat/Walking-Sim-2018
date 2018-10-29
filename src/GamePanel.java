@@ -16,7 +16,7 @@ import javax.swing.Timer;
 import javax.swing.text.JTextComponent;
 
 public class GamePanel extends JPanel implements KeyListener, ActionListener {
-	public int imageRow = 0, imageColumn = 0;
+	public int imageRow = 3, imageColumn = 0;
 	final int speedyBoi = 1;
 	int panelWidth = 700, panelHeight = 650;
 	boolean ownBoat = false;
@@ -45,6 +45,10 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
 		bkgdArray[1][1] = ImageIO.read(this.getClass().getResourceAsStream("newmaze copy.png"));
 		bkgdArray[2][1] = ImageIO.read(this.getClass().getResourceAsStream("rmid.png"));
 		bkgdArray[3][1] = ImageIO.read(this.getClass().getResourceAsStream("bigfor.png"));
+		bkgdArray[0][2] = ImageIO.read(this.getClass().getResourceAsStream("despacito.png"));
+		bkgdArray[1][2] = ImageIO.read(this.getClass().getResourceAsStream("joyceispoopy.png"));
+		bkgdArray[2][2] = ImageIO.read(this.getClass().getResourceAsStream("poop.png"));
+		bkgdArray[3][2] = ImageIO.read(this.getClass().getResourceAsStream("dootdootdootdootdootdootdooo.png"));
 		rCat = ImageIO.read(this.getClass().getResourceAsStream("jkrealboi.png"));
 		raft = ImageIO.read(this.getClass().getResourceAsStream("boat.png"));
 		c = new RareCatto();
@@ -141,14 +145,11 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
 				imageColumn--;
 				c.catX = 674;
 			}
-			
+
 			if (imageColumn == 0 && c.catX < 25) {
 				c.catX = 25;
 			}
 		}
-			
-			
-		
 
 		if (up == true) {
 
@@ -163,8 +164,7 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
 				c.catY = 25;
 			}
 		}
-		
-		
+
 		if (down == true) {
 			c.catY += speedyBoi;
 
