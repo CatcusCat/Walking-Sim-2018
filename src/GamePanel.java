@@ -63,6 +63,7 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
 		g.drawImage(bkgdArray[imageRow][imageColumn], 0, 0, RunnerClass.bkgdwidth, RunnerClass.bkgdheight, null);
 		c.draw(g);
 		repaint();
+		c.update();
 	}
 
 	@Override

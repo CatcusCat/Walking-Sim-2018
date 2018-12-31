@@ -8,7 +8,7 @@ public class RunnerClass {
 
 	final static int bkgdheight = 700;
 	final static int bkgdwidth = 700;
-	JFrame bkgd = new JFrame();
+	public static JFrame bkgd = new JFrame();
 	
 	public static void main(String[] args) {
 		new RunnerClass();
