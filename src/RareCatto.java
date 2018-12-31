@@ -10,6 +10,7 @@ public class RareCatto {
 	int catX = 300;
 	int catY = 550;
 	Robot r;
+	public static Color watercolor = new Color(21,126,244);
 
 	public RareCatto() {
 		try {
@@ -28,9 +29,9 @@ public class RareCatto {
 		double cxm = mousePoint.getX();
 		double cym = mousePoint.getY() + 50;
 		Color color = r.getPixelColor((int)cx, (int)cy);
-		System.out.println(color);
 		
-		//if (color == )
+		
+		
 	}
 	
 	void paintComponent(Graphics g) {

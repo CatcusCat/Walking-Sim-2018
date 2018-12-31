@@ -64,6 +64,10 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
 		c.draw(g);
 		repaint();
 		c.update();
+		if (RareCatto.color == RareCatto.watercolor) {
+			imageRow = 4;
+			imageColumn = 3;
+		}
 	}
 
 	@Override
